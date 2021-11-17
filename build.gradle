@@ -1,0 +1,49 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.6.0'
+}
+
+plugins {
+    id 'com.github.johnrengelman.shadow' version '7.1.0'
+    id 'java'
+}
+
+group 'dev.gamer153.typingplayers'
+version '0.0.1'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven {
+        url = "https://repo.pl3x.net"
+    }
+    maven {
+        url = "https://oss.sonatype.org/content/groups/public/"
+    }
+    maven {
+        url = "https://jitpack.io"
+    }
+    maven {
+        url = "https://repo.minebench.de/"
+    }
+    maven {
+        url = "https://maven.enginehub.org/repo/"
+    }
+    maven { url = "https://repo.dmulloy2.net/repository/public/" }
+    flatDir {
+        dir("lib")
+    }
+}
+
+dependencies {
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.6.0'
+    implementation "net.pl3x.purpur:purpur-api:1.17.1-R0.1-SNAPSHOT"
+    implementation "com.comphenix.protocol:ProtocolLib:4.7.0"
+//    implementation "com.github.KodySimpson:SimpAPI:4.4.0"/
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+}
+
+shadowJar {
+    dependencies {
+        include(dependency("com.github.*:*:*"))
+    }
+}

@@ -1,0 +1,17 @@
+name: TypingPlayers
+main: dev.gamer153.typingplayers.TypingPlayers
+version: 0.0.1
+authors: [Gamer153]
+api-version: 1.17
+
+commands:
+  typing:
+    description: Get typing players.
+    permission: typingplayers.typing
+    usage: /typing
+
+depend:
+  - ProtocolLib
+
+libraries:
+  - org.jetbrains.kotlin:kotlin-stdlib:1.6.0
