@@ -1,6 +1,7 @@
 package dev.gamer153.typingplayers.listeners
 
 import dev.gamer153.typingplayers.TypingPlayers
+import dev.gamer153.typingplayers.stopTyping
 import dev.gamer153.typingplayers.typing
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -16,6 +17,6 @@ class TypingListener : Listener {
 
     @EventHandler
     fun onCommandPreprocess(evt: PlayerCommandPreprocessEvent) {
-        TypingPlayers.playersTyping.remove(evt.player)
+        evt.player.stopTyping()
     }
 }

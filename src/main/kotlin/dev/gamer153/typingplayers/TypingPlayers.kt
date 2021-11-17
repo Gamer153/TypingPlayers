@@ -60,10 +60,14 @@ fun Player.typing(typing: String?) {
     TypingPlayers.playerTypingRemoveTasks[this]?.cancel()
     TypingPlayers.playerTypingRemoveTasks[this] = object : BukkitRunnable() {
         override fun run() {
-            if (TypingPlayers.playersTyping.contains(this@typing)) Bukkit.broadcast("${ChatColor.GRAY}${ChatColor.ITALIC}$name stopped typing.".component(), "typingplayers.broadcast.stop")
-            TypingPlayers.playersTyping.remove(this@typing)
+            this@typing.stopTyping()
         }
     }.runTaskLaterAsynchronously(TypingPlayers.instance, 2 * 20)
+}
+
+fun Player.stopTyping() {
+    if (TypingPlayers.playersTyping.contains(this)) Bukkit.broadcast("${ChatColor.GRAY}${ChatColor.ITALIC}$name stopped typing.".component(), "typingplayers.broadcast.stop")
+    TypingPlayers.playersTyping.remove(this)
 }
 
 private fun String.component(): Component {

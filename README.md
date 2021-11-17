@@ -3,6 +3,6 @@ Simple plugin which shows when players are typing a command.
 
 Only works when players:
 - are typing a message starting with `/`
-- are at the first argument (`/<command> <first argument>`)
+- finished typing the command (`/<command> [arguments]`)
 
 Requires [ProtocolLib](https://www.spigotmc.org/resources/protocollib.1997/)!
