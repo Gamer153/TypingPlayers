@@ -10,6 +10,21 @@ commands:
     permission: typingplayers.typing
     usage: /typing
 
+permissions:
+  typingplayers.typing:
+    description: Use /typing
+    default: op
+  typingplayers.broadcast:
+    description: Receive typing player broadcasts
+    default: false
+    children:
+      - typingplayers.broadcast.start
+      - typingplayers.broadcast.stop
+  typingplayers.broadcast.start:
+    default: false
+  typingplayers.broadcast.stop:
+    default: false
+
 depend:
   - ProtocolLib
 

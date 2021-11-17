@@ -9,6 +9,7 @@ import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.JoinConfiguration
 import net.kyori.adventure.text.event.HoverEvent
 import net.md_5.bungee.api.ChatColor
+import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
@@ -54,10 +55,12 @@ class TypingPlayers : JavaPlugin() {
 }
 
 fun Player.typing(typing: String?) {
+    if (!TypingPlayers.playersTyping.contains(this)) Bukkit.broadcast("${ChatColor.GRAY}${ChatColor.ITALIC}$name started typing.".component(), "typingplayers.broadcast.start")
     TypingPlayers.playersTyping[this] = typing
     TypingPlayers.playerTypingRemoveTasks[this]?.cancel()
     TypingPlayers.playerTypingRemoveTasks[this] = object : BukkitRunnable() {
         override fun run() {
+            if (TypingPlayers.playersTyping.contains(this@typing)) Bukkit.broadcast("${ChatColor.GRAY}${ChatColor.ITALIC}$name stopped typing.".component(), "typingplayers.broadcast.stop")
             TypingPlayers.playersTyping.remove(this@typing)
         }
     }.runTaskLaterAsynchronously(TypingPlayers.instance, 2 * 20)
